@@ -4,6 +4,8 @@ Firmware binaries for RadioVerum boards (M5Stack StickS3). No source code.
 
 **Latest: [v1.4.0](https://github.com/Radio-Atlas/radioverum-firmware/releases/latest)**. Anyone can flash it; no key is needed.
 
+**How to use the board: [user guide](docs/USER_GUIDE.md)** (modes, first setup, reading the screen, updates, problems).
+
 ## Flash a board (USB)
 
 For a new board, or one that no longer starts. You need the board, a USB-C **data** cable, and a computer with Chrome or Edge.
@@ -13,7 +15,7 @@ For a new board, or one that no longer starts. You need the board, a USB-C **dat
 3. Open <https://espressif.github.io/esptool-js/>. Leave Baudrate at `921600`, click **Connect**, and pick the board (`USB JTAG/serial debug unit` or `ESP32-S3`).
 4. Under **Program**: Flash Address `0x0`, choose the `-full.bin` file, click **Program**. Wait about a minute until it says done.
 5. Press the power button once. The board starts and shows the version.
-6. Set up its Wi-Fi again (flashing erases it): plug the board into an iPhone 15 or newer, a Mac or a Linux computer, open `http://192.168.7.1`, **Settings** tab, pick the network, **leave Server URL empty**, Save and reboot.
+6. Set up its Wi-Fi again (flashing erases it): plug the board into an iPhone 15 or newer, a Mac or a Linux computer, open `http://192.168.7.1`, **Settings** tab, pick the network, **leave Server URL empty**, Save and reboot. With pictures: [user guide §3](docs/USER_GUIDE.md#3-first-setup).
 
 With Python instead of a browser (replace `COM5` with your port; on macOS `/dev/cu.usbmodem…`, on Linux `/dev/ttyACM0`):
 
