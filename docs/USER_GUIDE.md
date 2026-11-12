@@ -80,7 +80,7 @@ What you should see next, in LOCATE (if the band is orange, press 3 times):
 | `WIFI:EDUROAM` · `-62 DBM` | Network and signal: −50 is strong, −80 is weak. `JOINING` while it connects |
 | `SERVER OK` · `41/S` | Sending about 41 Wi-Fi readings per second. `SERVER WAIT` while it connects |
 | `MQTT` | Normal: data travels over the Internet through a public relay. It is **not encrypted**: do not rely on it where privacy matters |
-| `MQTT ENCRYPTED` | Older firmware (1.3.6). Works; update it (hold the button 2 s) |
+| `MQTT ENCRYPTED` | Older firmware (1.3.6). Works; to update it, [flash it over USB](#71-flash-it-yourself-usb) |
 | `DIRECT` | Straight to our server; only on UGA's network |
 | `LOCATING...` · `ABOUT 10 S` | Waiting for the first position |
 | `BOYD FLOOR 1` · `X15.8 Y-18.0 M` | Building, floor, and your position on the floor map in metres. Updates several times a second |
@@ -115,6 +115,8 @@ In COLLECT the board does not use Wi-Fi; the bottom block shows your network as 
 
 ## 7. Update the firmware
 
+**Boards that show 1.5.0 or lower cannot update this way** (the screen shows `UPDATE FAILED`): [flash 1.5.1 over USB](#71-flash-it-yourself-usb) once. From 1.5.1 on it works as below.
+
 ```mermaid
 flowchart LR
     H["Hold the button ~2 s"] --> C["CHECKING..."]
@@ -137,20 +139,20 @@ flowchart LR
 
 ### 7.1 Flash it yourself (USB)
 
-For a new board, or one that no longer starts. No account or key is needed. You need the board, a USB-C **data** cable, and a computer with Chrome or Edge.
+For a new board, one that no longer starts, or one that shows 1.5.0 or lower. No account or key is needed. You need the board, a USB-C **data** cable, and a computer with Chrome or Edge.
 
 1. Download `radioverum-sticks3-<version>-full.bin` from <https://github.com/Radio-Atlas/radioverum-firmware/releases/latest>.
 2. Plug the board into the computer. Hold the **power button** (on the side) until the green LED blinks, then let go. The board is now in download mode; the screen may go dark.
 3. Open <https://espressif.github.io/esptool-js/>. Leave Baudrate at `921600`, click **Connect**, and pick the board (`USB JTAG/serial debug unit` or `ESP32-S3`).
 4. Under **Program**: Flash Address `0x0`, choose the `-full.bin` file, click **Program**. Wait about a minute until it says done.
 5. Press the power button once. The board starts and shows the version.
-6. Do the [first setup](#3-first-setup): flashing erased the Wi-Fi settings.
+6. Do the [first setup](#3-first-setup): flashing erased the Wi-Fi settings. (A way to keep them: [README](https://github.com/Radio-Atlas/radioverum-firmware#keep-the-wi-fi-settings-optional).)
 
 With Python instead of a browser (replace `COM5` with your port; on macOS `/dev/cu.usbmodem…`, on Linux `/dev/ttyACM0`):
 
 ```bash
 pip install esptool
-python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.4.0-full.bin
+python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.5.1-full.bin
 ```
 
 ---
@@ -168,7 +170,7 @@ python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after wat
 | Screen dark right after flashing | Press the power button once |
 | No port to pick when flashing | Use a data cable (some only charge), and hold the power button again until the green LED blinks |
 | `CHECK FAILED · NO WIFI` or `NO CONNECTION` | No Wi-Fi or no Internet right now. Try later, or on a hotspot |
-| `UPDATE FAILED …` | The old firmware is kept. Try later; if it repeats, tell us the reason shown |
+| `UPDATE FAILED …` | The old firmware is kept. On 1.5.0 or lower: [flash 1.5.1 over USB](#71-flash-it-yourself-usb). On 1.5.1 or higher: try later; if it repeats, tell us the reason shown |
 | `192.168.7.1` does not open | The cable must be plugged into the phone. Use Safari and type the address exactly |
 | Settings page says *403* | You opened it over Wi-Fi. Settings only work over the USB cable |
 
@@ -188,4 +190,4 @@ When you contact us, a photo of the screen helps.
 
 **Does it work at another school, or at home?** Yes, on any 2.4 GHz network with Internet. Positions only make sense where we have a map.
 
-**Which firmware do I have?** It is on the boot screen (e.g. `V1.4.0`). Holding the button tells you if there is a newer one.
+**Which firmware do I have?** It is on the boot screen (e.g. `V1.5.1`). Holding the button tells you if there is a newer one.
