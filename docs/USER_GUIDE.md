@@ -139,16 +139,11 @@ flowchart LR
 
 ### 7.1 Flash it yourself (USB)
 
-For a new board, one that no longer starts, or one that shows 1.5.0 or lower. No account or key is needed. You need the board, a USB-C **data** cable, and a computer with Chrome or Edge.
+For a new board, one that no longer starts, or one that shows 1.5.0 or lower. No account or key is needed.
 
-1. Download `radioverum-sticks3-<version>-full.bin` from <https://github.com/Radio-Atlas/radioverum-firmware/releases/latest>.
-2. Plug the board into the computer. Hold the **power button** (on the side) until the green LED blinks, then let go. The board is now in download mode; the screen may go dark.
-3. Open <https://espressif.github.io/esptool-js/>. Leave Baudrate at `921600`, click **Connect**, and pick the board (`USB JTAG/serial debug unit` or `ESP32-S3`).
-4. Under **Program**: Flash Address `0x0`, choose the `-full.bin` file, click **Program**. Wait about a minute until it says done.
-5. Press the power button once. The board starts and shows the version.
-6. Do the [first setup](#3-first-setup): flashing erased the Wi-Fi settings. (A way to keep them: [README](https://github.com/Radio-Atlas/radioverum-firmware#keep-the-wi-fi-settings-optional).)
+Follow the six steps on the firmware page: **<https://github.com/Radio-Atlas/radioverum-firmware#put-the-latest-firmware-on-a-board>**. Then do the [first setup](#3-first-setup): flashing erases the Wi-Fi settings.
 
-With Python instead of a browser (replace `COM5` with your port; on macOS `/dev/cu.usbmodem…`, on Linux `/dev/ttyACM0`):
+With Python instead of a browser, steps 3 to 5 are one command, and the board starts by itself (replace `COM5` with your port; on macOS `/dev/cu.usbmodem…`, on Linux `/dev/ttyACM0`):
 
 ```bash
 pip install esptool
@@ -180,9 +175,9 @@ When you contact us, a photo of the screen helps.
 
 ## 9. Questions
 
-**What does the board send?** In LOCATE: the signal strengths and identifiers (BSSIDs) of the Wi-Fi access points it hears, about 40 a second, plus its own status. It does not see your phone's traffic, and has no camera or microphone. In COLLECT it sends nothing over Wi-Fi.
+**What does the board send?** In LOCATE: the signal strengths and identifiers (BSSIDs) of the Wi-Fi access points it hears, about 40 a second, plus its own motion (accelerometer and gyroscope readings, from version 1.5.0) and its own status. It does not see your phone's traffic, and has no camera or microphone. In COLLECT it sends nothing over Wi-Fi.
 
-**Who can read my data?** It goes through a public relay on the Internet (an MQTT broker) and is **not encrypted**. Anyone who knows our topic name can read what the board sends (Wi-Fi signal readings and your position) and could send it a wrong position. Do not use the board where that matters.
+**Who can read my data?** It goes through a public relay on the Internet (an MQTT broker) and is **not encrypted**. Anyone who knows our topic name can read what the board sends (Wi-Fi signal readings, motion readings and your position) and could send it a wrong position. Do not use the board where that matters.
 
 **Where is my eduroam password?** Only on the board, entered by you over USB. The page never shows it again. Before you give the board away, tap **Forget saved settings** on the settings page.
 
