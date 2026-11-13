@@ -147,7 +147,7 @@ With Python instead of a browser, steps 3 to 5 are one command, and the board st
 
 ```bash
 pip install esptool
-python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.5.4-full.bin
+python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.5.6-full.bin
 ```
 
 ---
@@ -185,4 +185,4 @@ When you contact us, a photo of the screen helps.
 
 **Does it work at another school, or at home?** Yes, on any 2.4 GHz network with Internet. Positions only make sense where we have a map.
 
-**Which firmware do I have?** It is on the boot screen (e.g. `V1.5.4`). Holding the button tells you if there is a newer one.
+**Which firmware do I have?** It is on the boot screen (e.g. `V1.5.6`). Holding the button tells you if there is a newer one.
