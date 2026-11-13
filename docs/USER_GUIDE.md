@@ -115,7 +115,7 @@ In COLLECT the board does not use Wi-Fi; the bottom block shows your network as 
 
 ## 7. Update the firmware
 
-**Boards that show 1.5.0 or lower cannot update this way** (the screen shows `UPDATE FAILED`): [flash 1.5.1 over USB](#71-flash-it-yourself-usb) once. From 1.5.1 on it works as below.
+**Boards that show 1.5.0 or lower cannot update this way** (the screen shows `UPDATE FAILED`): [flash the latest version over USB](#71-flash-it-yourself-usb) once. From 1.5.1 on it works as below.
 
 ```mermaid
 flowchart LR
@@ -147,7 +147,7 @@ With Python instead of a browser, steps 3 to 5 are one command, and the board st
 
 ```bash
 pip install esptool
-python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.5.1-full.bin
+python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after watchdog_reset write_flash 0x0 radioverum-sticks3-1.5.4-full.bin
 ```
 
 ---
@@ -165,7 +165,7 @@ python -m esptool --chip esp32s3 -p COM5 -b 921600 --before no_reset --after wat
 | Screen dark right after flashing | Press the power button once |
 | No port to pick when flashing | Use a data cable (some only charge), and hold the power button again until the green LED blinks |
 | `CHECK FAILED · NO WIFI` or `NO CONNECTION` | No Wi-Fi or no Internet right now. Try later, or on a hotspot |
-| `UPDATE FAILED …` | The old firmware is kept. On 1.5.0 or lower: [flash 1.5.1 over USB](#71-flash-it-yourself-usb). On 1.5.1 or higher: try later; if it repeats, tell us the reason shown |
+| `UPDATE FAILED …` | The old firmware is kept. On 1.5.0 or lower: [flash the latest version over USB](#71-flash-it-yourself-usb). On 1.5.1 or higher: try later; if it repeats, tell us the reason shown |
 | `192.168.7.1` does not open | The cable must be plugged into the phone. Use Safari and type the address exactly |
 | Settings page says *403* | You opened it over Wi-Fi. Settings only work over the USB cable |
 
@@ -185,4 +185,4 @@ When you contact us, a photo of the screen helps.
 
 **Does it work at another school, or at home?** Yes, on any 2.4 GHz network with Internet. Positions only make sense where we have a map.
 
-**Which firmware do I have?** It is on the boot screen (e.g. `V1.5.1`). Holding the button tells you if there is a newer one.
+**Which firmware do I have?** It is on the boot screen (e.g. `V1.5.4`). Holding the button tells you if there is a newer one.
